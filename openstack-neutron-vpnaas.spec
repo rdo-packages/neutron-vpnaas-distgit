@@ -81,6 +81,10 @@ export PBR_VERSION=%{version}
 export SKIP_PIP_INSTALL=1
 %{__python2} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
 
+# Move rootwrap files to proper location
+install -d -m 755 %{buildroot}%{_datarootdir}/neutron/rootwrap
+mv %{buildroot}/usr/etc/neutron/rootwrap.d/*.filters %{buildroot}%{_datarootdir}/neutron/rootwrap
+
 # Move config files to proper location
 install -d -m 755 %{buildroot}%{_sysconfdir}/neutron
 mv %{buildroot}/usr/etc/neutron/*.ini %{buildroot}%{_sysconfdir}/neutron
@@ -105,6 +109,7 @@ install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.servic
 %doc AUTHORS CONTRIBUTING.rst LICENSE README.rst
 %{_bindir}/neutron-vpn-agent
 %{_unitdir}/neutron-vpn-agent.service
+%{_datarootdir}/neutron/rootwrap/vpnaas.filters
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/vpn_agent.ini
 
 
