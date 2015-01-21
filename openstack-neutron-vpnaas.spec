@@ -19,7 +19,7 @@ BuildArch:      noarch
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
-BuildRequires:  systemd
+BuildRequires:  systemd-units
 
 Requires:       python-%{servicename} = %{version}-%{release}
 Requires:       openstack-neutron >= %{version}
