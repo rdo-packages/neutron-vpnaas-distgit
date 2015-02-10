@@ -88,6 +88,7 @@ mv %{buildroot}/usr/etc/neutron/rootwrap.d/*.filters %{buildroot}%{_datarootdir}
 # Move config files to proper location
 install -d -m 755 %{buildroot}%{_sysconfdir}/neutron
 mv %{buildroot}/usr/etc/neutron/*.ini %{buildroot}%{_sysconfdir}/neutron
+mv %{buildroot}/usr/etc/neutron/*.conf %{buildroot}%{_sysconfdir}/neutron
 
 # Install systemd units
 install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.service
@@ -108,9 +109,11 @@ install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.servic
 %files
 %doc AUTHORS CONTRIBUTING.rst LICENSE README.rst
 %{_bindir}/neutron-vpn-agent
+%{_bindir}/neutron-vpn-netns-wrapper
 %{_unitdir}/neutron-vpn-agent.service
 %{_datarootdir}/neutron/rootwrap/vpnaas.filters
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/vpn_agent.ini
+%config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/neutron_vpnaas.conf
 
 
 %files -n python-%{servicename}
