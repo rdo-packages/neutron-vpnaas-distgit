@@ -107,7 +107,8 @@ install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.servic
 
 
 %files
-%doc AUTHORS CONTRIBUTING.rst LICENSE README.rst
+%license LICENSE
+%doc AUTHORS CONTRIBUTING.rst README.rst
 %{_bindir}/neutron-vpn-agent
 %{_bindir}/neutron-vpn-netns-wrapper
 %{_unitdir}/neutron-vpn-agent.service
