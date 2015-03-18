@@ -93,9 +93,10 @@ mv %{buildroot}/usr/etc/neutron/*.conf %{buildroot}%{_sysconfdir}/neutron
 # Install systemd units
 install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.service
 
-# Create and populate configuration directory for VPN agent (the same as for L3 agent)
-mkdir -p %{buildroot}%{_sysconfdir}/neutron/l3_agent
-ln -s ../vpn_agent.ini %{buildroot}%{_sysconfdir}/neutron/l3_agent/vpn_agent.conf
+# Create and populate distribution configuration directory for VPN agent
+# (the same as for L3 agent)
+mkdir -p %{buildroot}%{_datadir}/neutron/l3_agent
+ln -s ../vpn_agent.ini %{buildroot}%{_datadir}/neutron/l3_agent/vpn_agent.conf
 
 
 %post
@@ -119,7 +120,7 @@ ln -s ../vpn_agent.ini %{buildroot}%{_sysconfdir}/neutron/l3_agent/vpn_agent.con
 %{_datarootdir}/neutron/rootwrap/vpnaas.filters
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/vpn_agent.ini
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/neutron_vpnaas.conf
-%{_sysconfdir}/neutron/l3_agent/*.conf
+%{_datadir}/neutron/l3_agent/*.conf
 
 
 %files -n python-%{servicename}
