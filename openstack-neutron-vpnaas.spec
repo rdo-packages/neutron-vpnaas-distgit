@@ -96,7 +96,7 @@ install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.servic
 # Create and populate distribution configuration directory for VPN agent
 # (the same as for L3 agent)
 mkdir -p %{buildroot}%{_datadir}/neutron/l3_agent
-ln -s ../vpn_agent.ini %{buildroot}%{_datadir}/neutron/l3_agent/vpn_agent.conf
+ln -s %{_sysconfdir}/neutron/vpn_agent.ini %{buildroot}%{_datadir}/neutron/l3_agent/vpn_agent.conf
 
 
 %post
