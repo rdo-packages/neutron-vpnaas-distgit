@@ -38,6 +38,7 @@ Requires:       python-jinja2
 Requires:       python-netaddr >= 0.7.12
 Requires:       python-oslo-config >= 2:1.4.0
 Requires:       python-oslo-db >= 1.1.0
+Requires:       python-oslo-log >= 1.0.0
 Requires:       python-oslo-messaging >= 1.4.0.0
 Requires:       python-oslo-serialization >= 1.0.0
 Requires:       python-oslo-utils >= 1.0.0
