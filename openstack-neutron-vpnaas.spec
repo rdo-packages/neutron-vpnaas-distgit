@@ -99,6 +99,9 @@ install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.servic
 mkdir -p %{buildroot}%{_datadir}/neutron/l3_agent
 ln -s %{_sysconfdir}/neutron/vpn_agent.ini %{buildroot}%{_datadir}/neutron/l3_agent/vpn_agent.conf
 
+# Create configuration directory that can be populated by users with custom *.conf files
+mkdir -p %{buildroot}/%{_sysconfdir}/neutron/conf.d/neutron-vpn-agent
+
 
 %post
 %systemd_post neutron-vpn-agent.service
@@ -121,6 +124,8 @@ ln -s %{_sysconfdir}/neutron/vpn_agent.ini %{buildroot}%{_datadir}/neutron/l3_ag
 %{_datarootdir}/neutron/rootwrap/vpnaas.filters
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/vpn_agent.ini
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/neutron_vpnaas.conf
+%dir %{_sysconfdir}/neutron/conf.d
+%dir %{_sysconfdir}/neutron/conf.d/neutron-vpn-agent
 %{_datadir}/neutron/l3_agent/*.conf
 
 
