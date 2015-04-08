@@ -102,6 +102,10 @@ ln -s %{_sysconfdir}/neutron/vpn_agent.ini %{buildroot}%{_datadir}/neutron/l3_ag
 # Create configuration directory that can be populated by users with custom *.conf files
 mkdir -p %{buildroot}/%{_sysconfdir}/neutron/conf.d/neutron-vpn-agent
 
+# Make sure neutron-server loads new configuration file
+mkdir -p %{buildroot}/%{_datadir}/neutron/server
+ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/server/%{modulename}.conf
+
 
 %post
 %systemd_post neutron-vpn-agent.service
@@ -127,6 +131,7 @@ mkdir -p %{buildroot}/%{_sysconfdir}/neutron/conf.d/neutron-vpn-agent
 %dir %{_sysconfdir}/neutron/conf.d
 %dir %{_sysconfdir}/neutron/conf.d/neutron-vpn-agent
 %{_datadir}/neutron/l3_agent/*.conf
+%{_datadir}/neutron/server/%{modulename}.conf
 
 
 %files -n python-%{servicename}
