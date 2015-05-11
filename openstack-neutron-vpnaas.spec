@@ -69,11 +69,14 @@ This package contains Neutron %{type} test files.
 
 %prep
 %setup -q -n %{servicename}-%{upstream_version}
-# Remove bundled egg-info
-rm -rf %{modulename}.egg-info
+
+# Let's handle dependencies ourselves
+rm -f requirements.txt
 
 
 %build
+export PBR_VERSION=%{version}
+export SKIP_PIP_INSTALL=1
 %{__python2} setup.py build
 
 
