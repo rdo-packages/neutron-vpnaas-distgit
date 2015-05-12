@@ -6,7 +6,7 @@
 
 Name:           openstack-%{servicename}
 Version:        2015.1.0
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
