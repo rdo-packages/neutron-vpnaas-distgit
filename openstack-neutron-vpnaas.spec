@@ -1,3 +1,4 @@
+%global release_name kilo
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
 %global type VPNaaS
