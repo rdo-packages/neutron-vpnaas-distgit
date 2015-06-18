@@ -5,6 +5,7 @@
 Name:           openstack-%{servicename}
 Version:        XXX
 Release:        XXX%{?dist}
+Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
@@ -13,7 +14,7 @@ Source0:        http://tarballs.openstack.org/%{servicename}/%{servicename}-mast
 Source1:        neutron-vpn-agent.service
 
 Obsoletes:      openstack-neutron-vpn-agent < %{version}
-Provides:       openstack-neutron-vpn-agent = %{version}-%{release}
+Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
 
 BuildArch:      noarch
 BuildRequires:  python2-devel
@@ -21,8 +22,8 @@ BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
 BuildRequires:  systemd-units
 
-Requires:       python-%{servicename} = %{version}-%{release}
-Requires:       openstack-neutron >= %{version}
+Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
+Requires:       openstack-neutron >= %{epoch}:%{version}
 
 %description
 This is a %{type} service plugin for Openstack Neutron (Networking) service.
@@ -32,7 +33,7 @@ This is a %{type} service plugin for Openstack Neutron (Networking) service.
 Summary:        Neutron %{type} Python libraries
 Group:          Applications/System
 
-Requires:       python-neutron >= %{version}
+Requires:       python-neutron >= %{epoch}:%{version}
 Requires:       python-alembic
 Requires:       python-jinja2
 Requires:       python-netaddr >= 0.7.12
@@ -58,7 +59,7 @@ This package contains the Neutron %{type} Python library.
 Summary:        Neutron %{type} tests
 Group:          Applications/System
 
-Requires:       python-%{servicename} = %{version}-%{release}
+Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
 
 
 %description -n python-%{servicename}-tests
