@@ -2,15 +2,19 @@
 %global servicename neutron-vpnaas
 %global type VPNaaS
 
+%global milestone .0b3
+
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+
 Name:           openstack-%{servicename}
-Version:        XXX
-Release:        XXX%{?dist}
+Version:        7.0.0
+Release:        0.1%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
-Source0:        http://tarballs.openstack.org/%{servicename}/%{servicename}-master.tar.gz
+Source0:        http://launchpad.net/%{servicename}/%{release_name}/%{release_name}-3/+download/%{servicename}-%{upstream_version}.tar.gz
 Source1:        neutron-vpn-agent.service
 
 Obsoletes:      openstack-neutron-vpn-agent < %{version}
@@ -149,3 +153,5 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 
 
 %changelog
+* Wed Sep 16 2015 Ihar Hrachyshka <ihrachys@redhat.com> 1:7.0.0-0.1.0b3.el7
+- Initial release for Liberty M3.
