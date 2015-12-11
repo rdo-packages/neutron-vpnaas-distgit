@@ -18,6 +18,7 @@ Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
 
 BuildArch:      noarch
 BuildRequires:  python2-devel
+BuildRequires:  python-neutron >= %{epoch}:%{version}
 BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
 BuildRequires:  systemd-units
@@ -83,6 +84,15 @@ export PBR_VERSION=%{version}
 export SKIP_PIP_INSTALL=1
 %{__python2} setup.py build
 
+# Generate configuration files
+PYTHONPATH=. tools/generate_config_file_samples.sh
+find etc -name *.sample | while read filename
+do
+    filedir=$(dirname $filename)
+    file=$(basename $filename .sample)
+    mv ${filename} ${filedir}/${file}
+done
+
 
 %install
 export PBR_VERSION=%{version}
@@ -95,8 +105,7 @@ mv %{buildroot}/usr/etc/neutron/rootwrap.d/*.filters %{buildroot}%{_datarootdir}
 
 # Move config files to proper location
 install -d -m 755 %{buildroot}%{_sysconfdir}/neutron
-mv %{buildroot}/usr/etc/neutron/*.ini %{buildroot}%{_sysconfdir}/neutron
-mv %{buildroot}/usr/etc/neutron/*.conf %{buildroot}%{_sysconfdir}/neutron
+mv etc/*.ini etc/*.conf %{buildroot}%{_sysconfdir}/neutron
 
 # Install systemd units
 install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.service
