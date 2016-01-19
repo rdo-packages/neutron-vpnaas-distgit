@@ -1,3 +1,5 @@
-# UUID                                  	Group Name
-#
-a816e6491ddf1db65e748581a0082898aa8131e9	neutron-vpnaas-distgit-ptl
+# UUID          Group Name
+6ddfecad023c6f4fa3ac8c4d2583c502ea675a73 	Non-Interactive Users
+5c970ae047ba90682665ce6c3aeb4a2b3722fbab       	neutron-vpnaas-distgit-core
+a816e6491ddf1db65e748581a0082898aa8131e9        	neutron-vpnaas-distgit-ptl
+global:Registered-Users		Registered Users
