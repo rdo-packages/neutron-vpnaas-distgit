@@ -24,7 +24,7 @@ BuildRequires:  systemd-units
 BuildRequires:	git
 
 Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
-Requires:       openstack-neutron >= %{epoch}:%{version}
+Requires:       openstack-neutron >= 1:%{version}
 
 %description
 This is a %{type} service plugin for Openstack Neutron (Networking) service.
@@ -34,7 +34,7 @@ This is a %{type} service plugin for Openstack Neutron (Networking) service.
 Summary:        Neutron %{type} Python libraries
 Group:          Applications/System
 
-Requires:       python-neutron >= %{epoch}:%{version}
+Requires:       python-neutron >= 1:%{version}
 Requires:       python-alembic
 Requires:       python-jinja2
 Requires:       python-netaddr >= 0.7.12
