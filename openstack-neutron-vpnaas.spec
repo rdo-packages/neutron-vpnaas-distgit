@@ -34,7 +34,6 @@ This is a %{type} service plugin for Openstack Neutron (Networking) service.
 
 %package -n python-%{servicename}
 Summary:        Neutron %{type} Python libraries
-Group:          Applications/System
 
 Requires:       python-neutron >= 1:%{version}
 Requires:       python-alembic
@@ -60,7 +59,6 @@ This package contains the Neutron %{type} Python library.
 
 %package -n python-%{servicename}-tests
 Summary:        Neutron %{type} tests
-Group:          Applications/System
 
 Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
 
@@ -73,7 +71,6 @@ This package contains Neutron %{type} test files.
 
 %package -n openstack-neutron-vyatta-agent
 Summary:        Neutron VPNaaS Vyatta agent
-Group:          Applications/System
 
 Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
 # TODO(ihrachys): this agent also requires networking-brocade package but we
