@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenStack Neutron VPNaaS Vyatta Agent
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=neutron
+ExecStart=/usr/bin/neutron-vyatta-agent --config-file /usr/share/neutron/neutron-dist.conf --config-file /etc/neutron/neutron.conf --config-dir /etc/neutron/conf.d/common --config-dir /etc/neutron/conf.d/neutron-vyatta-agent --log-file /var/log/neutron/vyatta-agent.log
+PrivateTmp=false
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

@@ -12,6 +12,7 @@ License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        http://tarballs.openstack.org/%{servicename}/%{servicename}-master.tar.gz
 Source1:        neutron-vpn-agent.service
+Source2:        neutron-vyatta-agent.service
 
 Obsoletes:      openstack-neutron-vpn-agent < %{version}
 Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
@@ -70,6 +71,22 @@ This is a %{type} service plugin for Openstack Neutron (Networking) service.
 This package contains Neutron %{type} test files.
 
 
+%package -n openstack-neutron-vyatta-agent
+Summary:        Neutron VPNaaS Vyatta agent
+Group:          Applications/System
+
+Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
+# TODO(ihrachys): this agent also requires networking-brocade package but we
+# don't have it in RDO so far. Users may install it from PyPI until someone
+# contributes the package to RDO.
+
+
+%description -n openstack-neutron-vyatta-agent
+This is a %{type} service plugin for Openstack Neutron (Networking) service.
+
+This package contains Neutron VPNaaS Vyatta agent.
+
+
 %prep
 %autosetup -n %{servicename}-%{upstream_version} -S git
 
@@ -109,6 +126,7 @@ mv etc/*.ini etc/*.conf %{buildroot}%{_sysconfdir}/neutron
 
 # Install systemd units
 install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.service
+install -p -D -m 644 %{SOURCE2} %{buildroot}%{_unitdir}/neutron-vyatta-agent.service
 
 # Create and populate distribution configuration directory for VPN agent
 # (the same as for L3 agent)
@@ -116,7 +134,9 @@ mkdir -p %{buildroot}%{_datadir}/neutron/l3_agent
 ln -s %{_sysconfdir}/neutron/vpn_agent.ini %{buildroot}%{_datadir}/neutron/l3_agent/vpn_agent.conf
 
 # Create configuration directory that can be populated by users with custom *.conf files
-mkdir -p %{buildroot}/%{_sysconfdir}/neutron/conf.d/neutron-vpn-agent
+for agent in vpn vyatta; do
+    mkdir -p %{buildroot}/%{_sysconfdir}/neutron/conf.d/neutron-$agent-agent
+done
 
 # Make sure neutron-server loads new configuration file
 mkdir -p %{buildroot}/%{_datadir}/neutron/server
@@ -135,6 +155,18 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %systemd_postun_with_restart neutron-vpn-agent.service
 
 
+%post -n openstack-neutron-vyatta-agent
+%systemd_post neutron-vyatta-agent.service
+
+
+%preun -n openstack-neutron-vyatta-agent
+%systemd_preun neutron-vyatta-agent.service
+
+
+%postun -n openstack-neutron-vyatta-agent
+%systemd_postun_with_restart neutron-vyatta-agent.service
+
+
 %files
 %license LICENSE
 %doc AUTHORS CONTRIBUTING.rst README.rst
@@ -148,6 +180,14 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %dir %{_sysconfdir}/neutron/conf.d/neutron-vpn-agent
 %{_datadir}/neutron/l3_agent/*.conf
 %{_datadir}/neutron/server/%{modulename}.conf
+
+
+%files -n openstack-neutron-vyatta-agent
+%license LICENSE
+%{_bindir}/neutron-vyatta-agent
+%{_unitdir}/neutron-vyatta-agent.service
+%dir %{_sysconfdir}/neutron/conf.d
+%dir %{_sysconfdir}/neutron/conf.d/neutron-vyatta-agent
 
 
 %files -n python-%{servicename}
