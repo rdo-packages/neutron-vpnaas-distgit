@@ -1,6 +1,7 @@
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
 %global type VPNaaS
+%global min_neutron_version 1:8.0.0
 
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
@@ -22,14 +23,14 @@ Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
 
 BuildArch:      noarch
 BuildRequires:  python2-devel
-BuildRequires:  python-neutron >= 1:%{version}
+BuildRequires:  python-neutron >= %{min_neutron_version}
 BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
 BuildRequires:  systemd-units
 BuildRequires:	git
 
 Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
-Requires:       openstack-neutron >= 1:%{version}
+Requires:       openstack-neutron >= %{min_neutron_version}
 
 %description
 This is a %{type} service plugin for Openstack Neutron (Networking) service.
@@ -38,7 +39,7 @@ This is a %{type} service plugin for Openstack Neutron (Networking) service.
 %package -n python-%{servicename}
 Summary:        Neutron %{type} Python libraries
 
-Requires:       python-neutron >= 1:%{version}
+Requires:       python-neutron >= %{min_neutron_version}
 Requires:       python-alembic
 Requires:       python-jinja2
 Requires:       python-netaddr >= 0.7.12
