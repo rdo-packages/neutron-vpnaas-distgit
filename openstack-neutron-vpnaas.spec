@@ -6,8 +6,8 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:           openstack-%{servicename}
-Version:        2015.1.0
-Release:        3%{?dist}
+Version:        2015.1.3
+Release:        1%{?dist}
 Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
@@ -151,3 +151,5 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 
 
 %changelog
+* Wed Jun 22 2016 Alan Pevec <alan.pevec@redhat.com> 2015.1.3-1
+- Update to 2015.1.3
