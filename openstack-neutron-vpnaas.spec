@@ -1,3 +1,4 @@
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
 %global type VPNaaS
@@ -11,7 +12,7 @@ Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
-Source0:        http://tarballs.openstack.org/%{servicename}/%{servicename}-master.tar.gz
+Source0:        http://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
 Source1:        neutron-vpn-agent.service
 Source2:        neutron-vyatta-agent.service
 
