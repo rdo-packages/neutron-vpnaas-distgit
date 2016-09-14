@@ -38,19 +38,23 @@ This is a %{type} service plugin for Openstack Neutron (Networking) service.
 Summary:        Neutron %{type} Python libraries
 
 Requires:       python-neutron >= %{min_neutron_version}
-Requires:       python-alembic
+Requires:       python-alembic >= 0.8.4
 Requires:       python-jinja2
 Requires:       python-netaddr >= 0.7.12
-Requires:       python-oslo-config >= 2:1.4.0
-Requires:       python-oslo-db >= 1.1.0
-Requires:       python-oslo-log >= 1.0.0
-Requires:       python-oslo-messaging >= 1.4.0.0
-Requires:       python-oslo-serialization >= 1.0.0
-Requires:       python-oslo-utils >= 1.0.0
+Requires:       python-neutron-lib >= 0.4.0
+Requires:       python-oslo-concurrency >= 3.8.0
+Requires:       python-oslo-config >= 2:3.14.0
+Requires:       python-oslo-db >= 1.14.0
+Requires:       python-oslo-log >= 1.14.0
+Requires:       python-oslo-messaging >= 5.2.0
+Requires:       python-oslo-reports >= 0.6.0
+Requires:       python-oslo-serialization >= 1.10.0
+Requires:       python-oslo-service >= 1.10.0
+Requires:       python-oslo-utils >= 3.16.0
 Requires:       python-pbr
 Requires:       python-requests
-Requires:       python-six
-Requires:       python-sqlalchemy
+Requires:       python-six >= 1.9.0
+Requires:       python-sqlalchemy >= 1.0.10
 
 
 %description -n python-%{servicename}
