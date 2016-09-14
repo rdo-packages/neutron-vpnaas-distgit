@@ -1,3 +1,4 @@
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
 %global type VPNaaS
