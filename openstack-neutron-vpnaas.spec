@@ -1,4 +1,4 @@
-%global milestone .0b3
+%global milestone .0rc1
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
@@ -7,13 +7,17 @@
 
 Name:           openstack-%{servicename}
 Version:        9.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        0.2%{?milestone}%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        http://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
+#
+# patches_base=9.0.0.0rc1
+#
+
 Source1:        neutron-vpn-agent.service
 Source2:        neutron-vyatta-agent.service
 
@@ -205,6 +209,9 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 
 
 %changelog
+* Wed Sep 21 2016 Alfredo Moralejo <amoralej@redhat.com> 1:9.0.0-0.2.0rc1
+- Update to 9.0.0.0rc1
+
 * Wed Sep 14 2016 Haikel Guemar <hguemar@fedoraproject.org> 1:9.0.0-0.1
 - Update to 9.0.0.0b3
 
