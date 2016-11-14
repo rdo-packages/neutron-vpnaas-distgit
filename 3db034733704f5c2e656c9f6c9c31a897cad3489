@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5adbc538_957caf74",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 172
+      },
+      "writtenOn": "2016-11-14T13:33:15Z",
+      "side": 1,
+      "message": "The other patches don\u0027t have two empty lines :)",
+      "revId": "3db034733704f5c2e656c9f6c9c31a897cad3489",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
