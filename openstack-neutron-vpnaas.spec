@@ -120,15 +120,7 @@ export SKIP_PIP_INSTALL=1
 %{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
 # Create fake egg-info for the tempest plugin
-egg_path=%{buildroot}%{python2_sitelib}/%{modulename}-*.egg-info
-tempest_egg_path=%{buildroot}%{python2_sitelib}/%{modulename}_tests.egg-info
-mkdir $tempest_egg_path
-grep "tempest\|Tempest" %{modulename}.egg-info/entry_points.txt >$tempest_egg_path/entry_points.txt
-cp -r $egg_path/PKG-INFO $tempest_egg_path
-sed -i "s/%{servicename}/%{modulename}_tests/g" $tempest_egg_path/PKG-INFO
-# Remove any reference to Tempest plugin in the main package entry point
-sed -i "/tempest\|Tempest/d" $egg_path/entry_points.txt
-
+%py2_entrypoint %{modulename} %{servicename}
 
 # Move rootwrap files to proper location
 install -d -m 755 %{buildroot}%{_datarootdir}/neutron/rootwrap
