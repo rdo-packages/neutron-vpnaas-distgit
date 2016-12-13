@@ -207,3 +207,4 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{python2_sitelib}/%{modulename}_tests.egg-info
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/neutron-vpnaas/commit/?id=2ef3c0d44905d7465732630c68308b18f21c0b82
