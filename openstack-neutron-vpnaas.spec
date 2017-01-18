@@ -20,6 +20,7 @@ Obsoletes:      openstack-neutron-vpn-agent < %{version}
 Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
 
 BuildArch:      noarch
+BuildRequires:  openstack-macros
 BuildRequires:  python2-devel
 BuildRequires:  python-neutron >= %{min_neutron_version}
 BuildRequires:  python-pbr
