@@ -67,6 +67,7 @@ This package contains the Neutron %{type} Python library.
 %package -n python-%{servicename}-tests
 Summary:        Neutron %{type} tests
 
+Requires:       python-neutron-tests
 Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
 
 
