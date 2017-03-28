@@ -1,6 +1,9 @@
-# UUID                                  	Group Name
-#
-5c970ae047ba90682665ce6c3aeb4a2b3722fbab	openstack/neutron-vpnaas-distgit-core
-63673ea7f2ae6a5666566b1ea9f14e473d00f5a9	rdo-core
-a816e6491ddf1db65e748581a0082898aa8131e9	openstack/neutron-vpnaas-distgit-ptl
-global:Registered-Users                 	Registered Users
+# UUID Group Name
+global:Registered-Users	Registered Users
+4572c517702492251ad622a289176552a8acbbb2	rdo-superusers
+a8614ebcb376356b0721501227e37dc3af54ae8d	openstack/neutron-vpnaas-ptl
+global:Anonymous-Users	Anonymous Users
+05a678d3d4a168e149d5e8a0063bbd1b1c5526da	Administrators
+401cf37bee35d1c809d4d957e55f2a304f8eed69	rdo-provenpackagers
+04e40ce8db8f18afe3c115d9fb984fc5272f3a9f	openstack/neutron-vpnaas-core
+6ddfecad023c6f4fa3ac8c4d2583c502ea675a73	Non-Interactive Users
