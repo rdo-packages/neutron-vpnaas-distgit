@@ -49,17 +49,17 @@ Requires:       python-neutron >= 1:%{major_neutron_version}
 Conflicts:      python-neutron >= 1:%{next_neutron_version}
 Requires:       python-alembic >= 0.8.4
 Requires:       python-jinja2
-Requires:       python-netaddr >= 0.7.12
-Requires:       python-neutron-lib >= 0.4.0
+Requires:       python-netaddr >= 0.7.13
+Requires:       python-neutron-lib >= 1.9.0
 Requires:       python-oslo-concurrency >= 3.8.0
-Requires:       python-oslo-config >= 2:3.14.0
-Requires:       python-oslo-db >= 1.14.0
-Requires:       python-oslo-log >= 1.14.0
-Requires:       python-oslo-messaging >= 5.2.0
+Requires:       python-oslo-config >= 2:4.0.0
+Requires:       python-oslo-db >= 4.24.0
+Requires:       python-oslo-log >= 3.22.0
+Requires:       python-oslo-messaging >= 5.24.2
 Requires:       python-oslo-reports >= 0.6.0
 Requires:       python-oslo-serialization >= 1.10.0
 Requires:       python-oslo-service >= 1.10.0
-Requires:       python-oslo-utils >= 3.16.0
+Requires:       python-oslo-utils >= 3.20.0
 Requires:       python-pbr
 Requires:       python-requests
 Requires:       python-six >= 1.9.0
