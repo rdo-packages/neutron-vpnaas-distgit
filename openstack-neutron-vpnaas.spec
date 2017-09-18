@@ -104,7 +104,7 @@ This package contains Neutron VPNaaS Vyatta agent.
 %autosetup -n %{servicename}-%{upstream_version} -S git
 
 # Let's handle dependencies ourselves
-rm -f requirements.txt
+%py_req_cleanup
 
 # Kill egg-info in order to generate new SOURCES.txt
 rm -rf neutron_vpnaas.egg-info
