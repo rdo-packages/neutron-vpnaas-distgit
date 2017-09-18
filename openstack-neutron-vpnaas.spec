@@ -33,6 +33,7 @@ BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
 BuildRequires:  systemd-units
 BuildRequires:	git
+BuildRequires:  openstack-macros
 
 Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
 Requires:       openstack-neutron >= 1:%{major_neutron_version}
@@ -104,7 +105,7 @@ This package contains Neutron VPNaaS Vyatta agent.
 %autosetup -n %{servicename}-%{upstream_version} -S git
 
 # Let's handle dependencies ourselves
-rm -f requirements.txt
+%py_req_cleanup
 
 # Kill egg-info in order to generate new SOURCES.txt
 rm -rf neutron_vpnaas.egg-info
