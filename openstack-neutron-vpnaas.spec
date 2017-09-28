@@ -2,6 +2,7 @@
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
 %global type VPNaaS
+%global common_desc This is a %{type} service plugin for Openstack Neutron (Networking) service.
 
 %global neutron_version 11.0.0
 
@@ -39,8 +40,7 @@ Requires:       openstack-neutron >= 1:%{major_neutron_version}
 Conflicts:      openstack-neutron >= 1:%{next_neutron_version}
 
 %description
-This is a %{type} service plugin for Openstack Neutron (Networking) service.
-
+%{common_desc}
 
 %package -n python-%{servicename}
 Summary:        Neutron %{type} Python libraries
@@ -67,7 +67,7 @@ Requires:       python-sqlalchemy >= 1.0.10
 
 
 %description -n python-%{servicename}
-This is a %{type} service plugin for Openstack Neutron (Networking) service.
+%{common_desc}
 
 This package contains the Neutron %{type} Python library.
 
@@ -80,7 +80,7 @@ Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
 
 
 %description -n python-%{servicename}-tests
-This is a %{type} service plugin for Openstack Neutron (Networking) service.
+%{common_desc}
 
 This package contains Neutron %{type} test files.
 
@@ -95,7 +95,7 @@ Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
 
 
 %description -n openstack-neutron-vyatta-agent
-This is a %{type} service plugin for Openstack Neutron (Networking) service.
+%{common_desc}
 
 This package contains Neutron VPNaaS Vyatta agent.
 
