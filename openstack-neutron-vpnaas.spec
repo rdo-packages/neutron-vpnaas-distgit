@@ -86,7 +86,7 @@ This package contains Neutron %{type} test files.
 
 
 %package -n openstack-neutron-vyatta-agent
-Summary:        Neutron VPNaaS Vyatta agent
+Summary:        Neutron %{type} Vyatta agent
 
 Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
 # TODO(ihrachys): this agent also requires networking-brocade package but we
@@ -97,7 +97,7 @@ Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
 %description -n openstack-neutron-vyatta-agent
 %{common_desc}
 
-This package contains Neutron VPNaaS Vyatta agent.
+This package contains Neutron %{type} Vyatta agent.
 
 
 %prep
@@ -107,7 +107,7 @@ This package contains Neutron VPNaaS Vyatta agent.
 %py_req_cleanup
 
 # Kill egg-info in order to generate new SOURCES.txt
-rm -rf neutron_vpnaas.egg-info
+rm -rf %{modulename}.egg-info
 
 %build
 export PBR_VERSION=%{version}
@@ -191,7 +191,7 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{_unitdir}/neutron-vpn-agent.service
 %{_datarootdir}/neutron/rootwrap/vpnaas.filters
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/vpn_agent.ini
-%config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/neutron_vpnaas.conf
+%config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/%{modulename}.conf
 %dir %{_sysconfdir}/neutron/conf.d
 %dir %{_sysconfdir}/neutron/conf.d/neutron-vpn-agent
 %{_datadir}/neutron/l3_agent/*.conf
