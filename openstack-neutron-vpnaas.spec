@@ -18,7 +18,6 @@ Summary:        Openstack Networking %{type} plugin
 License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
-Source1:        neutron-vpn-agent.service
 Source2:        neutron-vyatta-agent.service
 
 Obsoletes:      openstack-neutron-vpn-agent < %{version}
@@ -141,7 +140,6 @@ install -d -m 755 %{buildroot}%{_sysconfdir}/neutron
 mv etc/*.ini etc/*.conf %{buildroot}%{_sysconfdir}/neutron
 
 # Install systemd units
-install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/neutron-vpn-agent.service
 install -p -D -m 644 %{SOURCE2} %{buildroot}%{_unitdir}/neutron-vyatta-agent.service
 
 # Create and populate distribution configuration directory for VPN agent
@@ -158,19 +156,6 @@ done
 mkdir -p %{buildroot}/%{_datadir}/neutron/server
 ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/server/%{modulename}.conf
 
-
-%post
-%systemd_post neutron-vpn-agent.service
-
-
-%preun
-%systemd_preun neutron-vpn-agent.service
-
-
-%postun
-%systemd_postun_with_restart neutron-vpn-agent.service
-
-
 %post -n openstack-neutron-vyatta-agent
 %systemd_post neutron-vyatta-agent.service
 
@@ -186,9 +171,7 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %files
 %license LICENSE
 %doc AUTHORS CONTRIBUTING.rst README.rst
-%{_bindir}/neutron-vpn-agent
 %{_bindir}/neutron-vpn-netns-wrapper
-%{_unitdir}/neutron-vpn-agent.service
 %{_datarootdir}/neutron/rootwrap/vpnaas.filters
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/vpn_agent.ini
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/%{modulename}.conf
