@@ -31,7 +31,7 @@ BuildRequires:  python-neutron >= 1:%{major_neutron_version}
 BuildConflicts: python-neutron >= 1:%{next_neutron_version}
 BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
-BuildRequires:  systemd-units
+BuildRequires:  systemd
 BuildRequires:	git
 
 Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
