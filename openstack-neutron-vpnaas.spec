@@ -29,8 +29,8 @@ BuildRequires:  openstack-macros
 BuildRequires:  python2-devel
 BuildRequires:  python-neutron >= 1:%{major_neutron_version}
 BuildConflicts: python-neutron >= 1:%{next_neutron_version}
-BuildRequires:  python-pbr
-BuildRequires:  python-setuptools
+BuildRequires:  python2-pbr
+BuildRequires:  python2-setuptools
 BuildRequires:  systemd
 BuildRequires:	git
 
@@ -46,23 +46,23 @@ Summary:        Neutron %{type} Python libraries
 
 Requires:       python-neutron >= 1:%{major_neutron_version}
 Conflicts:      python-neutron >= 1:%{next_neutron_version}
-Requires:       python-alembic >= 0.8.4
-Requires:       python-jinja2
-Requires:       python-netaddr >= 0.7.13
-Requires:       python-neutron-lib >= 1.9.0
-Requires:       python-oslo-concurrency >= 3.8.0
-Requires:       python-oslo-config >= 2:4.0.0
-Requires:       python-oslo-db >= 4.24.0
-Requires:       python-oslo-log >= 3.22.0
-Requires:       python-oslo-messaging >= 5.24.2
-Requires:       python-oslo-reports >= 0.6.0
-Requires:       python-oslo-serialization >= 1.10.0
-Requires:       python-oslo-service >= 1.10.0
-Requires:       python-oslo-utils >= 3.20.0
-Requires:       python-pbr
-Requires:       python-requests
-Requires:       python-six >= 1.9.0
-Requires:       python-sqlalchemy >= 1.0.10
+Requires:       python2-alembic >= 0.8.10
+Requires:       python2-jinja2
+Requires:       python2-netaddr >= 0.7.18
+Requires:       python-neutron-lib >= 1.13.0
+Requires:       python2-oslo-concurrency >= 3.25.0
+Requires:       python2-oslo-config >= 2:5.1.0
+Requires:       python2-oslo-db >= 4.27.0
+Requires:       python2-oslo-log >= 3.36.0
+Requires:       python2-oslo-messaging >= 5.29.0
+Requires:       python2-oslo-reports >= 1.18.0
+Requires:       python2-oslo-serialization >= 2.18.0
+Requires:       python2-oslo-service >= 1.24.0
+Requires:       python2-oslo-utils >= 3.33.0
+Requires:       python2-pbr
+Requires:       python2-requests
+Requires:       python2-six >= 1.10.0
+Requires:       python2-sqlalchemy >= 1.0.10
 
 
 %description -n python-%{servicename}
