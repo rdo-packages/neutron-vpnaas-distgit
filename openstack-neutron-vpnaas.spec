@@ -1,3 +1,15 @@
+# Macros for py2/py3 compatibility
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global pyver %{python3_pkgversion}
+%else
+%global pyver 2
+%endif
+%global pyver_bin python%{pyver}
+%global pyver_sitelib %python%{pyver}_sitelib
+%global pyver_install %py%{pyver}_install
+%global pyver_build %py%{pyver}_build
+# End of macros for py2/py3 compatibility
+%global pyver_entrypoint %py%{pyver}_entrypoint %{modulename} %{servicename}
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
@@ -23,59 +35,61 @@ Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
 BuildArch:      noarch
 BuildRequires:  gawk
 BuildRequires:  openstack-macros
-BuildRequires:  python2-devel
-BuildRequires:  python-neutron >= 1:%{major_neutron_version}
-BuildConflicts: python-neutron >= 1:%{next_neutron_version}
-BuildRequires:  python2-pbr
-BuildRequires:  python2-setuptools
+BuildRequires:  python%{pyver}-devel
+BuildRequires:  python%{pyver}-neutron >= 1:%{major_neutron_version}
+BuildConflicts: python%{pyver}-neutron >= 1:%{next_neutron_version}
+BuildRequires:  python%{pyver}-pbr
+BuildRequires:  python%{pyver}-setuptools
 BuildRequires:  systemd
 BuildRequires:	git
 
-Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
+Requires:       python%{pyver}-%{servicename} = %{epoch}:%{version}-%{release}
 Requires:       openstack-neutron >= 1:%{major_neutron_version}
 Conflicts:      openstack-neutron >= 1:%{next_neutron_version}
 
 %description
 %{common_desc}
 
-%package -n python-%{servicename}
+%package -n python%{pyver}-%{servicename}
 Summary:        Neutron %{type} Python libraries
+%{?python_provide:%python_provide python%{pyver}-%{servicename}}
 
-Requires:       python-neutron >= 1:%{major_neutron_version}
-Conflicts:      python-neutron >= 1:%{next_neutron_version}
-Requires:       python2-alembic >= 0.8.10
-Requires:       python2-jinja2
-Requires:       python2-netaddr >= 0.7.18
-Requires:       python-neutron-lib >= 1.18.0
-Requires:       python2-oslo-concurrency >= 3.26.0
-Requires:       python2-oslo-config >= 2:5.2.0
-Requires:       python2-oslo-db >= 4.27.0
-Requires:       python2-oslo-log >= 3.36.0
-Requires:       python2-oslo-messaging >= 5.29.0
-Requires:       python2-oslo-reports >= 1.18.0
-Requires:       python2-oslo-serialization >= 2.18.0
-Requires:       python2-oslo-service >= 1.24.0
-Requires:       python2-oslo-utils >= 3.33.0
-Requires:       python2-pbr
-Requires:       python2-requests
-Requires:       python2-six >= 1.10.0
-Requires:       python2-sqlalchemy >= 1.2.0
+Requires:       python%{pyver}-neutron >= 1:%{major_neutron_version}
+Conflicts:      python%{pyver}-neutron >= 1:%{next_neutron_version}
+Requires:       python%{pyver}-alembic >= 0.8.10
+Requires:       python%{pyver}-jinja2
+Requires:       python%{pyver}-netaddr >= 0.7.18
+Requires:       python%{pyver}-neutron-lib >= 1.18.0
+Requires:       python%{pyver}-oslo-concurrency >= 3.26.0
+Requires:       python%{pyver}-oslo-config >= 2:5.2.0
+Requires:       python%{pyver}-oslo-db >= 4.27.0
+Requires:       python%{pyver}-oslo-log >= 3.36.0
+Requires:       python%{pyver}-oslo-messaging >= 5.29.0
+Requires:       python%{pyver}-oslo-reports >= 1.18.0
+Requires:       python%{pyver}-oslo-serialization >= 2.18.0
+Requires:       python%{pyver}-oslo-service >= 1.24.0
+Requires:       python%{pyver}-oslo-utils >= 3.33.0
+Requires:       python%{pyver}-pbr
+Requires:       python%{pyver}-requests
+Requires:       python%{pyver}-six >= 1.10.0
+Requires:       python%{pyver}-sqlalchemy >= 1.2.0
 
 
-%description -n python-%{servicename}
+%description -n python%{pyver}-%{servicename}
 %{common_desc}
 
 This package contains the Neutron %{type} Python library.
 
 
-%package -n python-%{servicename}-tests
+%package -n python%{pyver}-%{servicename}-tests
 Summary:        Neutron %{type} tests
+%{?python_provide:%python_provide python%{pyver}-%{servicename}-tests}
 
-Requires:       python-neutron-tests
-Requires:       python-%{servicename} = %{epoch}:%{version}-%{release}
+Requires:       python%{pyver}-neutron-tests
+Requires:       python%{pyver}-%{servicename} = %{epoch}:%{version}-%{release}
 
 
-%description -n python-%{servicename}-tests
+%description -n python%{pyver}-%{servicename}-tests
 %{common_desc}
 
 This package contains Neutron %{type} test files.
@@ -93,10 +107,14 @@ rm -rf %{modulename}.egg-info
 %build
 export PBR_VERSION=%{version}
 export SKIP_PIP_INSTALL=1
-%{__python2} setup.py build
+%{pyver_build}
 
 # Generate configuration files
-PYTHONPATH=. tools/generate_config_file_samples.sh
+PYTHONPATH=.
+for file in `ls etc/oslo-config-generator/*`; do
+    oslo-config-generator-%{pyver} --config-file=$file
+done
+
 find etc -name *.sample | while read filename
 do
     filedir=$(dirname $filename)
@@ -108,10 +126,10 @@ done
 %install
 export PBR_VERSION=%{version}
 export SKIP_PIP_INSTALL=1
-%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
+%{pyver_install}
 
 # Create fake egg-info for the tempest plugin
-%py2_entrypoint %{modulename} %{servicename}
+%pyver_entrypoint
 
 # Move rootwrap files to proper location
 install -d -m 755 %{buildroot}%{_datarootdir}/neutron/rootwrap
@@ -146,14 +164,14 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{_datadir}/neutron/server/%{modulename}.conf
 
 
-%files -n python-%{servicename}
-%{python2_sitelib}/%{modulename}
-%{python2_sitelib}/%{modulename}-%{version}-py%{python2_version}.egg-info
-%exclude %{python2_sitelib}/%{modulename}/tests
+%files -n python%{pyver}-%{servicename}
+%{pyver_sitelib}/%{modulename}
+%{pyver_sitelib}/%{modulename}-%{version}.egg-info
+%exclude %{pyver_sitelib}/%{modulename}/tests
 
 
-%files -n python-%{servicename}-tests
-%{python2_sitelib}/%{modulename}/tests
-%{python2_sitelib}/%{modulename}_tests.egg-info
+%files -n python%{pyver}-%{servicename}-tests
+%{pyver_sitelib}/%{modulename}/tests
+%{pyver_sitelib}/%{modulename}_tests.egg-info
 
 %changelog
