@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_89d21cd1",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 534
+      },
+      "writtenOn": "2018-12-11T10:33:24Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure where it should go, thx :)",
+      "parentUuid": "9abe1de1_a964c048",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 76
+      },
+      "revId": "723916aee9423b02d70e9fe985a258a3c63127b9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_09796cf6",
         "filename": "openstack-neutron-vpnaas.spec",
         "patchSetId": 6
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "yeah, you need to add -* there",
       "parentUuid": "9abe1de1_09796cf6",
+      "range": {
+        "startLine": 169,
+        "startChar": 30,
+        "endLine": 169,
+        "endChar": 50
+      },
+      "revId": "723916aee9423b02d70e9fe985a258a3c63127b9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_49dd24df",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 534
+      },
+      "writtenOn": "2018-12-11T10:33:24Z",
+      "side": 1,
+      "message": "thx. added",
+      "parentUuid": "9abe1de1_895b3c87",
       "range": {
         "startLine": 169,
         "startChar": 30,
