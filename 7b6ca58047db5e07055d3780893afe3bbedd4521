@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_89ffbc66",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-11T09:56:34Z",
+      "side": 1,
+      "message": "%{service} macro is not there so need to do below:-\n\n%global pyver_entrypoint %py%{pyver}_entrypoint %{modulename} %{servicename}",
+      "parentUuid": "9abe1de1_29ce705a",
+      "revId": "7b6ca58047db5e07055d3780893afe3bbedd4521",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_09ddec0d",
         "filename": "openstack-neutron-vpnaas.spec",
         "patchSetId": 4
