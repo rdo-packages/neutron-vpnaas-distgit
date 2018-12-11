@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_e94518b3",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 534
+      },
+      "writtenOn": "2018-12-11T10:09:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9abe1de1_89ffbc66",
+      "revId": "7b6ca58047db5e07055d3780893afe3bbedd4521",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_09ddec0d",
         "filename": "openstack-neutron-vpnaas.spec",
         "patchSetId": 4
@@ -48,6 +66,30 @@
       "writtenOn": "2018-12-11T09:49:09Z",
       "side": 1,
       "message": "Replace this line by just:\n\n%pyver_entrypoint",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 44
+      },
+      "revId": "7b6ca58047db5e07055d3780893afe3bbedd4521",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_c91374b7",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 534
+      },
+      "writtenOn": "2018-12-11T10:09:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9abe1de1_09ddec0d",
       "range": {
         "startLine": 131,
         "startChar": 0,
