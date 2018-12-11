@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_09796cf6",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-11T10:27:26Z",
+      "side": 1,
+      "message": "Following replace should work:-\n-*.egg-info",
+      "range": {
+        "startLine": 169,
+        "startChar": 30,
+        "endLine": 169,
+        "endChar": 50
+      },
+      "revId": "723916aee9423b02d70e9fe985a258a3c63127b9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
