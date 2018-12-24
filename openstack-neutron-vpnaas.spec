@@ -16,7 +16,10 @@
 %global type VPNaaS
 %global common_desc This is a %{type} service plugin for Openstack Neutron (Networking) service.
 
-%define major_neutron_version %(echo %{version} | awk 'BEGIN { FS=\".\"}; {print $1}')
+# FIXME(ykarel) need to hardcode as neutron_vpnaas is not released with neutron
+%global neutron_version 14.0.0
+
+%define major_neutron_version %(echo %{neutron_version} | awk 'BEGIN { FS=\".\"}; {print $1}')
 %define next_neutron_version %(echo $((%{major_neutron_version} + 1)))
 
 Name:           openstack-%{servicename}
