@@ -16,9 +16,6 @@
 %global type VPNaaS
 %global common_desc This is a %{type} service plugin for Openstack Neutron (Networking) service.
 
-%define major_neutron_version %(echo %{version} | awk 'BEGIN { FS=\".\"}; {print $1}')
-%define next_neutron_version %(echo $((%{major_neutron_version} + 1)))
-
 Name:           openstack-%{servicename}
 Version:        XXX
 Release:        XXX%{?dist}
@@ -36,16 +33,14 @@ BuildArch:      noarch
 BuildRequires:  gawk
 BuildRequires:  openstack-macros
 BuildRequires:  python%{pyver}-devel
-BuildRequires:  python%{pyver}-neutron >= 1:%{major_neutron_version}
-BuildConflicts: python%{pyver}-neutron >= 1:%{next_neutron_version}
+BuildRequires:  python%{pyver}-neutron >= %{epoch}:%{version}
 BuildRequires:  python%{pyver}-pbr
 BuildRequires:  python%{pyver}-setuptools
 BuildRequires:  systemd
 BuildRequires:	git
 
 Requires:       python%{pyver}-%{servicename} = %{epoch}:%{version}-%{release}
-Requires:       openstack-neutron >= 1:%{major_neutron_version}
-Conflicts:      openstack-neutron >= 1:%{next_neutron_version}
+Requires:       openstack-neutron >= %{epoch}:%{version}
 
 %description
 %{common_desc}
@@ -54,8 +49,7 @@ Conflicts:      openstack-neutron >= 1:%{next_neutron_version}
 Summary:        Neutron %{type} Python libraries
 %{?python_provide:%python_provide python%{pyver}-%{servicename}}
 
-Requires:       python%{pyver}-neutron >= 1:%{major_neutron_version}
-Conflicts:      python%{pyver}-neutron >= 1:%{next_neutron_version}
+Requires:       python%{pyver}-neutron >= %{epoch}:%{version}
 Requires:       python%{pyver}-alembic >= 0.8.10
 Requires:       python%{pyver}-jinja2
 Requires:       python%{pyver}-netaddr >= 0.7.18
