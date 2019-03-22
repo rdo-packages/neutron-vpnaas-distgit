@@ -1,3 +1,4 @@
+%global milestone .0rc1
 # Macros for py2/py3 compatibility
 %if 0%{?fedora} || 0%{?rhel} > 7
 %global pyver %{python3_pkgversion}
@@ -17,14 +18,18 @@
 %global common_desc This is a %{type} service plugin for Openstack Neutron (Networking) service.
 
 Name:           openstack-%{servicename}
-Version:        XXX
-Release:        XXX%{?dist}
+Version:        14.0.0
+Release:        0.1%{?milestone}%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
+
+#
+# patches_base=14.0.0.0rc1
+#
 
 Obsoletes:      openstack-neutron-vpn-agent < %{version}
 Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
@@ -169,3 +174,6 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{pyver_sitelib}/%{modulename}_tests.egg-info
 
 %changelog
+* Fri Mar 22 2019 RDO <dev@lists.rdoproject.org> 1:14.0.0-0.1.0rc1
+- Update to 14.0.0.0rc1
+
