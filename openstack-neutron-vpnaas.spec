@@ -1,4 +1,3 @@
-%global milestone .0rc1
 # Macros for py2/py3 compatibility
 %if 0%{?fedora} || 0%{?rhel} > 7
 %global pyver %{python3_pkgversion}
@@ -19,7 +18,7 @@
 
 Name:           openstack-%{servicename}
 Version:        15.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
@@ -27,8 +26,6 @@ License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
 
-#
-# patches_base=15.0.0.0rc1
 #
 
 Obsoletes:      openstack-neutron-vpn-agent < %{version}
@@ -38,7 +35,7 @@ BuildArch:      noarch
 BuildRequires:  gawk
 BuildRequires:  openstack-macros
 BuildRequires:  python%{pyver}-devel
-BuildRequires:  python%{pyver}-neutron >= %{epoch}:%{version}
+BuildRequires:  python%{pyver}-neutron >= %{epoch}:15.0.0
 BuildRequires:  python%{pyver}-pbr
 BuildRequires:  python%{pyver}-setuptools
 BuildRequires:  systemd
@@ -54,7 +51,7 @@ Requires:       openstack-neutron >= %{epoch}:%{version}
 Summary:        Neutron %{type} Python libraries
 %{?python_provide:%python_provide python%{pyver}-%{servicename}}
 
-Requires:       python%{pyver}-neutron >= %{epoch}:%{version}
+Requires:       python%{pyver}-neutron >= %{epoch}:15.0.0
 Requires:       python%{pyver}-alembic >= 0.8.10
 Requires:       python%{pyver}-jinja2
 Requires:       python%{pyver}-netaddr >= 0.7.18
@@ -174,6 +171,9 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{pyver_sitelib}/%{modulename}_tests.egg-info
 
 %changelog
+* Wed Oct 16 2019 RDO <dev@lists.rdoproject.org> 1:15.0.0-1
+- Update to 15.0.0
+
 * Mon Sep 30 2019 RDO <dev@lists.rdoproject.org> 1:15.0.0-0.1.0rc1
 - Update to 15.0.0.0rc1
 
