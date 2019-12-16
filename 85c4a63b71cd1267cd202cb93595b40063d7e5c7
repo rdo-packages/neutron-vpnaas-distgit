@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb8509c1_a8a5c4ea",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2019-12-16T06:25:20Z",
+      "side": 1,
+      "message": "Needs to removed also.",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 45
+      },
+      "revId": "85c4a63b71cd1267cd202cb93595b40063d7e5c7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
