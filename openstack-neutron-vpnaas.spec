@@ -8,7 +8,6 @@
 %global pyver_sitelib %python%{pyver}_sitelib
 %global pyver_install %py%{pyver}_install
 %global pyver_build %py%{pyver}_build
-%global pyver_entrypoint %py%{pyver}_entrypoint %{modulename} %{servicename}
 # End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
@@ -122,9 +121,6 @@ export PBR_VERSION=%{version}
 export SKIP_PIP_INSTALL=1
 %{pyver_install}
 
-# Create fake egg-info for the tempest plugin
-%pyver_entrypoint
-
 # Move rootwrap files to proper location
 install -d -m 755 %{buildroot}%{_datarootdir}/neutron/rootwrap
 mv %{buildroot}/usr/etc/neutron/rootwrap.d/*.filters %{buildroot}%{_datarootdir}/neutron/rootwrap
@@ -166,6 +162,5 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 
 %files -n python%{pyver}-%{servicename}-tests
 %{pyver_sitelib}/%{modulename}/tests
-%{pyver_sitelib}/%{modulename}_tests.egg-info
 
 %changelog
