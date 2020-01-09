@@ -1,14 +1,8 @@
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
 %global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
 %global pyver_bin python%{pyver}
 %global pyver_sitelib %python%{pyver}_sitelib
 %global pyver_install %py%{pyver}_install
 %global pyver_build %py%{pyver}_build
-# End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
@@ -164,3 +158,4 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{pyver_sitelib}/%{modulename}/tests
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/neutron-vpnaas/commit/?id=4a1ebf6d0ac9d6c55d4e347ddf00298e6a60ce8f
