@@ -22,6 +22,30 @@
       "revId": "4bb71ce797894a3e501c2693ec40e3da1bc55faf",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "61652225_4605a45a",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2020-01-09T15:10:27Z",
+      "side": 0,
+      "message": "yeah, i was just hacking to test my theory, i\u0027ll put it back but might not matter since this change probably won\u0027t merge",
+      "parentUuid": "43e84d3a_e97751c2",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 6
+      },
+      "revId": "4bb71ce797894a3e501c2693ec40e3da1bc55faf",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
