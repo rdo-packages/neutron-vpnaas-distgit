@@ -32,14 +32,14 @@ BuildArch:      noarch
 BuildRequires:  gawk
 BuildRequires:  openstack-macros
 BuildRequires:  python%{pyver}-devel
-BuildRequires:  python%{pyver}-neutron >= %{epoch}:%{version}
+BuildRequires:  python%{pyver}-neutron >= %{epoch}:15.1.0
 BuildRequires:  python%{pyver}-pbr
 BuildRequires:  python%{pyver}-setuptools
 BuildRequires:  systemd
 BuildRequires:	git
 
 Requires:       python%{pyver}-%{servicename} = %{epoch}:%{version}-%{release}
-Requires:       openstack-neutron >= %{epoch}:%{version}
+Requires:       openstack-neutron >= %{epoch}:15.1.0
 
 %description
 %{common_desc}
@@ -48,7 +48,7 @@ Requires:       openstack-neutron >= %{epoch}:%{version}
 Summary:        Neutron %{type} Python libraries
 %{?python_provide:%python_provide python%{pyver}-%{servicename}}
 
-Requires:       python%{pyver}-neutron >= %{epoch}:%{version}
+Requires:       python%{pyver}-neutron >= %{epoch}:15.1.0
 Requires:       python%{pyver}-alembic >= 0.8.10
 Requires:       python%{pyver}-jinja2
 Requires:       python%{pyver}-netaddr >= 0.7.18
