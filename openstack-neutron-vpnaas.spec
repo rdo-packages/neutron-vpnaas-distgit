@@ -1,4 +1,3 @@
-%global milestone .0rc2
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
@@ -7,7 +6,7 @@
 
 Name:           openstack-%{servicename}
 Version:        16.0.0
-Release:        0.2%{?milestone}%{?dist}
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
@@ -15,7 +14,6 @@ License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
 
-# patches_base=16.0.0.0rc2
 
 Obsoletes:      openstack-neutron-vpn-agent < %{version}
 Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
@@ -155,6 +153,9 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{python3_sitelib}/%{modulename}/tests
 
 %changelog
+* Wed May 13 2020 RDO <dev@lists.rdoproject.org> 1:16.0.0-1
+- Update to 16.0.0
+
 * Thu May 07 2020 RDO <dev@lists.rdoproject.org> 1:16.0.0-0.2.0rc1
 - Update to 16.0.0.0rc2
 
