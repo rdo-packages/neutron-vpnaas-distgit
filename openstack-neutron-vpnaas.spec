@@ -1,3 +1,5 @@
+%{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
+%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
@@ -6,13 +8,18 @@
 
 Name:           openstack-%{servicename}
 Version:        17.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
+# Required for tarball sources verification
+%if 0%{?sources_gpg} == 1
+Source101:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz.asc
+Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
+%endif
 
 #
 
@@ -20,6 +27,11 @@ Obsoletes:      openstack-neutron-vpn-agent < %{version}
 Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
 
 BuildArch:      noarch
+
+# Required for tarball sources verification
+%if 0%{?sources_gpg} == 1
+BuildRequires:  /usr/bin/gpgv2
+%endif
 BuildRequires:  gawk
 BuildRequires:  openstack-macros
 BuildRequires:  python3-devel
@@ -79,6 +91,10 @@ This package contains Neutron %{type} test files.
 
 
 %prep
+# Required for tarball sources verification
+%if 0%{?sources_gpg} == 1
+%{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
+%endif
 %autosetup -n %{servicename}-%{upstream_version} -S git
 
 # Let's handle dependencies ourselves
@@ -154,6 +170,9 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{python3_sitelib}/%{modulename}/tests
 
 %changelog
+* Tue Oct 20 2020 Joel Capitao <jcapitao@redhat.com> 1:17.0.0-2
+- Enable sources tarball validation using GPG signature.
+
 * Wed Oct 14 2020 RDO <dev@lists.rdoproject.org> 1:17.0.0-1
 - Update to 17.0.0
 
