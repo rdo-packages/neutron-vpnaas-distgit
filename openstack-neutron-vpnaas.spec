@@ -37,7 +37,7 @@ BuildRequires:  python3-neutron >= %{epoch}:15.1.0
 BuildRequires:  python3-pbr
 BuildRequires:  python3-setuptools
 BuildRequires:  systemd
-BuildRequires:	git
+BuildRequires:	git-core
 
 Requires:       python3-%{servicename} = %{epoch}:%{version}-%{release}
 Requires:       openstack-neutron >= %{epoch}:15.1.0
