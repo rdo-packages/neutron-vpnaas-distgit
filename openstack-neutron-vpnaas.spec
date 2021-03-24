@@ -1,5 +1,6 @@
+%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x5d2d1e4fb8d38e6af76c50d53d4fec30cf5ce3da
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
@@ -7,14 +8,18 @@
 %global common_desc This is a %{type} service plugin for Openstack Neutron (Networking) service.
 
 Name:           openstack-%{servicename}
-Version:        XXX
-Release:        XXX%{?dist}
+Version:        18.0.0
+Release:        0.1%{?milestone}%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
+#
+# patches_base=18.0.0.0rc1
+#
+
 # Required for tarball sources verification
 %if 0%{?sources_gpg} == 1
 Source101:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz.asc
@@ -168,4 +173,7 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{python3_sitelib}/%{modulename}/tests
 
 %changelog
+* Wed Mar 24 2021 RDO <dev@lists.rdoproject.org> 1:18.0.0-0.1.0rc1
+- Update to 18.0.0.0rc1
+
 
