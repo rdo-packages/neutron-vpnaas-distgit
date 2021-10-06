@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x4c29ff0e437f3351fd82bdf47c5a3bc787dc7035
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
@@ -9,15 +8,13 @@
 
 Name:           openstack-%{servicename}
 Version:        19.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
 License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
-#
-# patches_base=19.0.0.0rc1
 #
 
 # Required for tarball sources verification
@@ -173,6 +170,9 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{python3_sitelib}/%{modulename}/tests
 
 %changelog
+* Wed Oct 06 2021 RDO <dev@lists.rdoproject.org> 1:19.0.0-1
+- Update to 19.0.0
+
 * Fri Sep 17 2021 RDO <dev@lists.rdoproject.org> 1:19.0.0-0.1.0rc1
 - Update to 19.0.0.0rc1
 
