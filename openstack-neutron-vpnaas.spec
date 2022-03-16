@@ -50,22 +50,22 @@ Summary:        Neutron %{type} Python libraries
 %{?python_provide:%python_provide python3-%{servicename}}
 
 Requires:       python3-neutron >= %{epoch}:17.0.0
-Requires:       python3-alembic >= 0.9.6
+Requires:       python3-alembic >= 1.6.5
 Requires:       python3-jinja2 >= 2.10
 Requires:       python3-netaddr >= 0.7.18
 Requires:       python3-neutron-lib >= 2.6.0
 Requires:       python3-oslo-concurrency >= 3.26.0
 Requires:       python3-oslo-config >= 2:5.2.0
 Requires:       python3-oslo-db >= 4.44.0
-Requires:       python3-oslo-log >= 4.2.1
+Requires:       python3-oslo-log >= 4.5.0
 Requires:       python3-oslo-messaging >= 7.0.0
 Requires:       python3-oslo-reports >= 1.18.0
 Requires:       python3-oslo-serialization >= 2.25.0
 Requires:       python3-oslo-service >= 1.31.0
-Requires:       python3-oslo-utils >= 4.4.0
+Requires:       python3-oslo-utils >= 4.5.0
 Requires:       python3-pbr >= 4.0.0
-Requires:       python3-requests >= 2.14.2
-Requires:       python3-sqlalchemy >= 1.2.0
+Requires:       python3-requests >= 2.18.0
+Requires:       python3-sqlalchemy >= 1.3.0
 
 
 %description -n python3-%{servicename}
