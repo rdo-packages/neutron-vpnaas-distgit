@@ -1,0 +1,8 @@
+Code-Review+2: Alfredo Moralejo <amoralej@redhat.com>
+Workflow+1: Alfredo Moralejo <amoralej@redhat.com>
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Thu, 31 Mar 2022 15:27:04 +0000
+Reviewed-on: https://review.rdoproject.org/r/c/openstack/neutron-vpnaas-distgit/+/41173
+Project: openstack/neutron-vpnaas-distgit
+Branch: refs/heads/yoga-rdo
