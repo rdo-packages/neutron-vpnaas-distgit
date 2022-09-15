@@ -64,7 +64,6 @@ Requires:       python3-oslo-serialization >= 2.25.0
 Requires:       python3-oslo-service >= 1.31.0
 Requires:       python3-oslo-utils >= 4.5.0
 Requires:       python3-pbr >= 4.0.0
-Requires:       python3-requests >= 2.18.0
 Requires:       python3-sqlalchemy >= 1.3.0
 
 
