@@ -68,6 +68,7 @@ Requires:       python3-oslo-utils >= 4.4.0
 Requires:       python3-pbr >= 4.0.0
 Requires:       python3-requests >= 2.14.2
 Requires:       python3-sqlalchemy >= 1.2.0
+Requires:       python3-sqlalchemy < 1.4.0
 
 
 %description -n python3-%{servicename}
