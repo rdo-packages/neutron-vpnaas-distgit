@@ -177,3 +177,4 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 * Mon Sep 30 2019 RDO <dev@lists.rdoproject.org> 1:15.0.0-0.1.0rc1
 - Update to 15.0.0.0rc1
 
+# REMOVEME: error caused by commit https://opendev.org/openstack/neutron-vpnaas/commit/883f4f26100f751f50543d363a8a2633f43d62aa
