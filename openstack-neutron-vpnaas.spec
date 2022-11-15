@@ -14,7 +14,6 @@ License:        ASL 2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
 
-
 Obsoletes:      openstack-neutron-vpn-agent < %{version}
 Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
 
