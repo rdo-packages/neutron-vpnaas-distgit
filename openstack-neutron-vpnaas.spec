@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x4c29ff0e437f3351fd82bdf47c5a3bc787dc7035
+%global sources_gpg_sign 0xa7475c5f2122fec3f90343223fe3bf5aad1080e4
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
@@ -7,7 +7,7 @@
 %global common_desc This is a %{type} service plugin for Openstack Neutron (Networking) service.
 
 Name:           openstack-%{servicename}
-Version:        19.0.0
+Version:        19.0.1
 Release:        1%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
@@ -170,6 +170,9 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 %{python3_sitelib}/%{modulename}/tests
 
 %changelog
+* Wed Dec 07 2022 RDO <dev@lists.rdoproject.org> 1:19.0.1-1
+- Update to 19.0.1
+
 * Wed Oct 06 2021 RDO <dev@lists.rdoproject.org> 1:19.0.0-1
 - Update to 19.0.0
 
