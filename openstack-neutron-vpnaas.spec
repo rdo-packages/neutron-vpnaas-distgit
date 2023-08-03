@@ -1,6 +1,8 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+# we are excluding some BRs from automatic generator
+%global excluded_brs doc8 bandit pre-commit hacking flake8-import-order bashate sphinx openstackdocstheme
 %global modulename neutron_vpnaas
 %global servicename neutron-vpnaas
 %global type VPNaaS
@@ -12,7 +14,7 @@ Release:        XXX%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
-License:        ASL 2.0
+License:        Apache-2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
 # Required for tarball sources verification
@@ -33,9 +35,7 @@ BuildRequires:  /usr/bin/gpgv2
 BuildRequires:  gawk
 BuildRequires:  openstack-macros
 BuildRequires:  python3-devel
-BuildRequires:  python3-neutron >= %{epoch}:17.0.0
-BuildRequires:  python3-pbr
-BuildRequires:  python3-setuptools
+BuildRequires:  pyproject-rpm-macros
 BuildRequires:  systemd
 BuildRequires:	git-core
 
@@ -47,25 +47,7 @@ Requires:       openstack-neutron >= %{epoch}:17.0.0
 
 %package -n python3-%{servicename}
 Summary:        Neutron %{type} Python libraries
-%{?python_provide:%python_provide python3-%{servicename}}
-
 Requires:       python3-neutron >= %{epoch}:17.0.0
-Requires:       python3-alembic >= 1.6.5
-Requires:       python3-jinja2 >= 2.10
-Requires:       python3-netaddr >= 0.7.18
-Requires:       python3-neutron-lib >= 2.6.0
-Requires:       python3-oslo-concurrency >= 3.26.0
-Requires:       python3-oslo-config >= 2:8.0.0
-Requires:       python3-oslo-db >= 4.44.0
-Requires:       python3-oslo-log >= 4.5.0
-Requires:       python3-oslo-messaging >= 7.0.0
-Requires:       python3-oslo-reports >= 1.18.0
-Requires:       python3-oslo-serialization >= 2.25.0
-Requires:       python3-oslo-service >= 1.31.0
-Requires:       python3-oslo-utils >= 4.5.0
-Requires:       python3-pbr >= 4.0.0
-Requires:       python3-sqlalchemy >= 1.3.0
-
 
 %description -n python3-%{servicename}
 %{common_desc}
@@ -75,11 +57,9 @@ This package contains the Neutron %{type} Python library.
 
 %package -n python3-%{servicename}-tests
 Summary:        Neutron %{type} tests
-%{?python_provide:%python_provide python3-%{servicename}-tests}
 
 Requires:       python3-neutron-tests
 Requires:       python3-%{servicename} = %{epoch}:%{version}-%{release}
-
 
 %description -n python3-%{servicename}-tests
 %{common_desc}
@@ -94,19 +74,34 @@ This package contains Neutron %{type} test files.
 %endif
 %autosetup -n %{servicename}-%{upstream_version} -S git
 
-# Let's handle dependencies ourselves
-%py_req_cleanup
 
-# Kill egg-info in order to generate new SOURCES.txt
-rm -rf %{modulename}.egg-info
+sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
+sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
+sed -i /^minversion.*/d tox.ini
+sed -i /^requires.*virtualenv.*/d tox.ini
+
+# Exclude some bad-known BRs
+for pkg in %{excluded_brs}; do
+  for reqfile in doc/requirements.txt test-requirements.txt; do
+    if [ -f $reqfile ]; then
+      sed -i /^${pkg}.*/d $reqfile
+    fi
+  done
+done
+
+%generate_buildrequires
+%pyproject_buildrequires -t -e %{default_toxenv}
 
 %build
 export PBR_VERSION=%{version}
 export SKIP_PIP_INSTALL=1
-%{py3_build}
+%pyproject_wheel
+
+%install
+%pyproject_install
 
 # Generate configuration files
-PYTHONPATH=.
+PYTHONPATH="%{buildroot}/%{python3_sitelib}"
 for file in `ls etc/oslo-config-generator/*`; do
     oslo-config-generator --config-file=$file
 done
@@ -117,12 +112,6 @@ do
     file=$(basename $filename .sample)
     mv ${filename} ${filedir}/${file}
 done
-
-
-%install
-export PBR_VERSION=%{version}
-export SKIP_PIP_INSTALL=1
-%{py3_install}
 
 # Move rootwrap files to proper location
 install -d -m 755 %{buildroot}%{_datarootdir}/neutron/rootwrap
@@ -159,7 +148,7 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 
 %files -n python3-%{servicename}
 %{python3_sitelib}/%{modulename}
-%{python3_sitelib}/%{modulename}-%{version}-*.egg-info
+%{python3_sitelib}/%{modulename}*.dist-info
 %exclude %{python3_sitelib}/%{modulename}/tests
 
 
