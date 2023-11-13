@@ -16,6 +16,24 @@
       "message": "I can\u0027t find the commit in upstream repo but I guess it\u0027s https://review.opendev.org/c/openstack/neutron-vpnaas/+/543394",
       "revId": "9bb3aeab659995ac5b1edb0c573e1779fe0df34a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82725129_d7903846",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 682
+      },
+      "writtenOn": "2023-11-13T10:29:38Z",
+      "side": 1,
+      "message": "Yes and actually the commit id points the one in neutron-distgit to deal with that update.\n\nhttps://review.rdoproject.org/r/c/openstack/neutron-vpnaas-distgit/+/14369",
+      "parentUuid": "c917c88d_899866ba",
+      "revId": "9bb3aeab659995ac5b1edb0c573e1779fe0df34a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
