@@ -162,3 +162,4 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 
 %changelog
 
+# REMOVEME: error caused by commit https://opendev.org/openstack/neutron-vpnaas/commit/256464aea691f8b4957ba668a117963353f34e4c
