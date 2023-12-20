@@ -22,6 +22,7 @@ Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{u
 Source101:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz.asc
 Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
 %endif
+Source103:        neutron-vpnaas-ovn-vpn-agent.service
 
 Obsoletes:      openstack-neutron-vpn-agent < %{version}
 Provides:       openstack-neutron-vpn-agent = %{epoch}:%{version}-%{release}
@@ -65,6 +66,17 @@ Requires:       python3-%{servicename} = %{epoch}:%{version}-%{release}
 %{common_desc}
 
 This package contains Neutron %{type} test files.
+
+
+%package -n openstack-%{servicename}-ovn-vpn-agent
+Summary:        VPNaaS support for OVN
+
+Requires:       python3-%{servicename} = %{epoch}:%{version}-%{release}
+
+%description -n openstack-%{servicename}-ovn-vpn-agent
+%{common_desc}
+
+This package contains stand-alone VPN agent to support OVN+VPN.
 
 
 %prep
@@ -118,6 +130,10 @@ sed -i 's/#ipsec_config_template =.*/#ipsec_config_template =/g' etc/vpn_agent.i
 sed -i 's/#strongswan_config_template =.*/#strongswan_config_template =/g' etc/vpn_agent.ini
 sed -i 's/#ipsec_secret_template =.*/#ipsec_secret_template =/g' etc/vpn_agent.ini
 
+sed -i 's/#ipsec_config_template =.*/#ipsec_config_template =/g' etc/neutron_ovn_vpn_agent.ini
+sed -i 's/#strongswan_config_template =.*/#strongswan_config_template =/g' etc/neutron_ovn_vpn_agent.ini
+sed -i 's/#ipsec_secret_template =.*/#ipsec_secret_template =/g' etc/neutron_ovn_vpn_agent.ini
+
 # Move rootwrap files to proper location
 install -d -m 755 %{buildroot}%{_datarootdir}/neutron/rootwrap
 mv %{buildroot}/usr/etc/neutron/rootwrap.d/*.filters %{buildroot}%{_datarootdir}/neutron/rootwrap
@@ -137,6 +153,20 @@ mkdir -p %{buildroot}/%{_sysconfdir}/neutron/conf.d/neutron-vpn-agent
 # Make sure neutron-server loads new configuration file
 mkdir -p %{buildroot}/%{_datadir}/neutron/server
 ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/server/%{modulename}.conf
+
+install -p -D -m 644 %{SOURCE103} %{buildroot}%{_unitdir}/neutron-vpnaas-ovn-vpn-agent.service
+
+
+%post -n openstack-%{servicename}-ovn-vpn-agent
+%systemd_post neutron-vpnaas-ovn-vpn-agent.service
+
+
+%preun -n openstack-%{servicename}-ovn-vpn-agent
+%systemd_preun neutron-vpnaas-ovn-vpn-agent.service
+
+
+%postun -n openstack-%{servicename}-ovn-vpn-agent
+%systemd_postun_with_restart neutron-vpnaas-ovn-vpn-agent
 
 %files
 %license LICENSE
@@ -159,6 +189,12 @@ ln -s %{_sysconfdir}/neutron/%{modulename}.conf %{buildroot}%{_datadir}/neutron/
 
 %files -n python3-%{servicename}-tests
 %{python3_sitelib}/%{modulename}/tests
+
+
+%files -n openstack-%{servicename}-ovn-vpn-agent
+%{_bindir}/neutron-ovn-vpn-agent
+%{_unitdir}/neutron-vpnaas-ovn-vpn-agent.service
+%config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/neutron_ovn_vpn_agent.ini
 
 %changelog
 

@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenStack Neutron VPNaaS support for OVN
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=neutron
+ExecStart=/usr/bin/neutron-ovn-vpn-agent --config-file /etc/neutron/neutron_ovn_vpn_agent.ini
+PrivateTmp=false
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
