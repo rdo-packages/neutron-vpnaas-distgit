@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c82cb531_29d4e56d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-12-21T07:53:22Z",
+      "side": 1,
+      "message": "Just some minor notes",
+      "revId": "42d953f97fbfc5e27dc268133d8a731020b5cd17",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21b64d5b_6fe28040",
+        "filename": "neutron-vpnaas-ovn-vpn-agent.service",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-12-21T07:53:22Z",
+      "side": 1,
+      "message": "This service requires neutron user to exist. neutron is created as a pre-script in openstack-neutron-common (https://github.com/rdo-packages/neutron-distgit/blob/rpm-master/openstack-neutron.spec#L520) so I would add openstack-neutron-common as a requirement.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "42d953f97fbfc5e27dc268133d8a731020b5cd17",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c5d50d2_74e5ab30",
+        "filename": "neutron-vpnaas-ovn-vpn-agent.service",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-12-21T07:53:22Z",
+      "side": 1,
+      "message": "We should specify to send logs to /var/log/neutron/neutron-ovn-vgp-agent.log using:\n\n--log-file /var/log/neutron/neutron-ovn-vgp-agent.log \n\ni.e., see, https://github.com/rdo-packages/neutron-distgit/blob/rpm-master/neutron-dhcp-agent.service#L8 \n\nBTW /var/log/neutron is created in openstack-neutron-common so one more reason to add it as a dependency",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "42d953f97fbfc5e27dc268133d8a731020b5cd17",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f4ff356_e2cd3f78",
+        "filename": "openstack-neutron-vpnaas.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-12-21T07:53:22Z",
+      "side": 1,
+      "message": "/etc/neutron is also owned by openstack-neutron-common",
+      "range": {
+        "startLine": 197,
+        "startChar": 46,
+        "endLine": 197,
+        "endChar": 68
+      },
+      "revId": "42d953f97fbfc5e27dc268133d8a731020b5cd17",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
