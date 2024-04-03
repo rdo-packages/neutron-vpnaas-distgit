@@ -1,4 +1,3 @@
-%global milestone .0rc2
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x2ef3fe0ec2b075ab7458b5f8b702b20b13df2318
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
@@ -10,15 +9,14 @@
 %global common_desc This is a %{type} service plugin for Openstack Neutron (Networking) service.
 
 Name:           openstack-%{servicename}
-Version:        24.0.0
-Release:        0.2%{?milestone}%{?dist}
+Version:        24.0.1
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
 
 License:        Apache-2.0
 URL:            http://launchpad.net/neutron/
 Source0:        https://tarballs.openstack.org/%{servicename}/%{servicename}-%{upstream_version}.tar.gz
-# patches_base=24.0.0.0rc2
 
 # Required for tarball sources verification
 %if 0%{?sources_gpg} == 1
@@ -201,6 +199,9 @@ install -p -D -m 644 %{SOURCE103} %{buildroot}%{_unitdir}/neutron-vpnaas-ovn-vpn
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/neutron_ovn_vpn_agent.ini
 
 %changelog
+* Wed Apr 03 2024 RDO <dev@lists.rdoproject.org> 1:24.0.1-1
+- Update to 24.0.1
+
 * Thu Mar 28 2024 RDO <dev@lists.rdoproject.org> 1:24.0.0-0.2.0rc1
 - Update to 24.0.0.0rc2
 
