@@ -131,9 +131,9 @@ sed -i 's/#ipsec_config_template =.*/#ipsec_config_template =/g' etc/vpn_agent.i
 sed -i 's/#strongswan_config_template =.*/#strongswan_config_template =/g' etc/vpn_agent.ini
 sed -i 's/#ipsec_secret_template =.*/#ipsec_secret_template =/g' etc/vpn_agent.ini
 
-sed -i 's/#ipsec_config_template =.*/#ipsec_config_template =/g' etc/neutron_ovn_vpn_agent.ini
-sed -i 's/#strongswan_config_template =.*/#strongswan_config_template =/g' etc/neutron_ovn_vpn_agent.ini
-sed -i 's/#ipsec_secret_template =.*/#ipsec_secret_template =/g' etc/neutron_ovn_vpn_agent.ini
+sed -i 's/#ipsec_config_template =.*/#ipsec_config_template =/g' etc/ovn_vpn_agent.ini
+sed -i 's/#strongswan_config_template =.*/#strongswan_config_template =/g' etc/ovn_vpn_agent.ini
+sed -i 's/#ipsec_secret_template =.*/#ipsec_secret_template =/g' etc/ovn_vpn_agent.ini
 
 # Move rootwrap files to proper location
 install -d -m 755 %{buildroot}%{_datarootdir}/neutron/rootwrap
@@ -195,7 +195,7 @@ install -p -D -m 644 %{SOURCE103} %{buildroot}%{_unitdir}/neutron-vpnaas-ovn-vpn
 %files -n openstack-%{servicename}-ovn-vpn-agent
 %{_bindir}/neutron-ovn-vpn-agent
 %{_unitdir}/neutron-vpnaas-ovn-vpn-agent.service
-%config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/neutron_ovn_vpn_agent.ini
+%config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/ovn_vpn_agent.ini
 
 %changelog
 
