@@ -131,9 +131,9 @@ sed -i 's/#ipsec_config_template =.*/#ipsec_config_template =/g' etc/vpn_agent.i
 sed -i 's/#strongswan_config_template =.*/#strongswan_config_template =/g' etc/vpn_agent.ini
 sed -i 's/#ipsec_secret_template =.*/#ipsec_secret_template =/g' etc/vpn_agent.ini
 
-sed -i 's/#ipsec_config_template =.*/#ipsec_config_template =/g' etc/neutron_ovn_vpn_agent.ini
-sed -i 's/#strongswan_config_template =.*/#strongswan_config_template =/g' etc/neutron_ovn_vpn_agent.ini
-sed -i 's/#ipsec_secret_template =.*/#ipsec_secret_template =/g' etc/neutron_ovn_vpn_agent.ini
+sed -i 's/#ipsec_config_template =.*/#ipsec_config_template =/g' etc/ovn_vpn_agent.ini
+sed -i 's/#strongswan_config_template =.*/#strongswan_config_template =/g' etc/ovn_vpn_agent.ini
+sed -i 's/#ipsec_secret_template =.*/#ipsec_secret_template =/g' etc/ovn_vpn_agent.ini
 
 # Move rootwrap files to proper location
 install -d -m 755 %{buildroot}%{_datarootdir}/neutron/rootwrap
