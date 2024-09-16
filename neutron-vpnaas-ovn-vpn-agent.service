@@ -5,7 +5,7 @@ After=syslog.target network.target
 [Service]
 Type=simple
 User=neutron
-ExecStart=/usr/bin/neutron-ovn-vpn-agent --config-file /etc/neutron/neutron_ovn_vpn_agent.ini --log-file /var/log/neutron/neutron-ovn-vgp-agent.log
+ExecStart=/usr/bin/neutron-ovn-vpn-agent --config-file /etc/neutron/ovn_vpn_agent.ini --log-file /var/log/neutron/ovn-vpn-agent.log
 PrivateTmp=false
 KillMode=process
 
