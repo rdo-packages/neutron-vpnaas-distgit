@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b6e88f2_b33e4229",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2024-09-23T12:33:33Z",
+      "side": 1,
+      "message": "waiting for https://review.rdoproject.org/r/c/openstack/neutron-distgit/+/54615 to be merged",
+      "revId": "d96532dc0887bcc1a6993556cd415eb923f8b6a6",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
