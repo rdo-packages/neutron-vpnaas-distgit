@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "721f6a11_f937b5b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2025-06-10T08:39:44Z",
+      "side": 1,
+      "message": "Again, another failure with Centos9 when removing py39 support",
+      "revId": "6132a7e9ba76e85f85502fc6a83ca68ece74a006",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
