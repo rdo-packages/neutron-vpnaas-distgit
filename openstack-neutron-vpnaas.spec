@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2ef3fe0ec2b075ab7458b5f8b702b20b13df2318
+%global sources_gpg_sign 0x22284f69d9eccdf3df7819791c711af193ff8e54
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 # we are excluding some BRs from automatic generator
 %global excluded_brs doc8 bandit pre-commit hacking flake8-import-order bashate sphinx openstackdocstheme
@@ -9,7 +9,7 @@
 %global common_desc This is a %{type} service plugin for Openstack Neutron (Networking) service.
 
 Name:           openstack-%{servicename}
-Version:        24.0.1
+Version:        24.0.2
 Release:        1%{?dist}
 Epoch:          1
 Summary:        Openstack Networking %{type} plugin
@@ -199,6 +199,9 @@ install -p -D -m 644 %{SOURCE103} %{buildroot}%{_unitdir}/neutron-vpnaas-ovn-vpn
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/neutron_ovn_vpn_agent.ini
 
 %changelog
+* Fri Jul 25 2025 RDO <dev@lists.rdoproject.org> 1:24.0.2-1
+- Update to 24.0.2
+
 * Wed Apr 03 2024 RDO <dev@lists.rdoproject.org> 1:24.0.1-1
 - Update to 24.0.1
 
