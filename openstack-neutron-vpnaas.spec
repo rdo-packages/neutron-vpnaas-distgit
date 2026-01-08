@@ -201,3 +201,4 @@ install -p -D -m 644 %{SOURCE103} %{buildroot}%{_unitdir}/neutron-vpnaas-ovn-vpn
 
 %changelog
 
+# REMOVEME: error caused by commit https://opendev.org/openstack/neutron-vpnaas/commit/3b7bd4ffb13b57e4ee345109975bca598553c824
